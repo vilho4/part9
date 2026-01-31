@@ -1,0 +1,15 @@
+POST http://localhost:3003/exercises
+Content-Type: application/json
+
+{
+  "daily_exercises": ["kolme", 0, 2, 4.5, 0, 3, 1],
+  "target": 2
+}
+
+# Expected response
+# HTTP/1.1 400 Bad Request
+# Content-Type: application/json  
+
+# {
+#   "error": "malformatted parameters"
+# }
