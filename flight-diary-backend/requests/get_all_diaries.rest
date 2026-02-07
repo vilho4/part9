@@ -1,0 +1,2 @@
+### get all diaries
+GET http://localhost:3000/api/diaries

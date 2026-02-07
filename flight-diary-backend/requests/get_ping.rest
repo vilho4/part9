@@ -1,0 +1,2 @@
+### get ping
+GET http://localhost:3000/ping
