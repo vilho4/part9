@@ -3,7 +3,6 @@ export interface CoursePartBase {
   exerciseCount: number
 }
 
-// 👈 UUSI yhteinen interface descriptionlle
 export interface CoursePartDescription extends CoursePartBase {
   description: string
 }
