@@ -50,6 +50,7 @@ export interface HealthCheckEntry extends BaseEntry {
   healthCheckRating: HealthCheckRating
 }
 
+// union type for all entry types
 export type Entry = HospitalEntry | OccupationalHealthcareEntry | HealthCheckEntry
 
 export interface Patient {
@@ -62,5 +63,5 @@ export interface Patient {
   entries: Entry[] // array of entries
 }
 
-export type NonSensitivePatient = Omit<Patient, 'ssn'>
+export type NonSensitivePatient = Omit<Patient, 'ssn' | 'entries'>
 export type NewPatient = Omit<Patient, 'id' | 'entries'>
