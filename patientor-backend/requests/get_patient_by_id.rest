@@ -1,2 +1,5 @@
 GET http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667
 Accept: application/json
+
+# get http://localhost:3001/api/patients/bf3f7290-0a6f-11f1-b3b3-499a75974a3d
+# Accept: application/json

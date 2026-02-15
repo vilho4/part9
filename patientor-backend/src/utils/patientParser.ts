@@ -1,5 +1,5 @@
-import { newPatientSchema, patientSchema } from './patientSchema'
-import { NewPatient, Patient } from '../types'
+import { newPatientSchema, patientSchema, newEntrySchema } from './patientSchema'
+import { NewPatient, Patient, NewEntry } from '../types'
 
 export const toNewPatient = (object: unknown): NewPatient => {
   return newPatientSchema.parse(object)
@@ -7,6 +7,10 @@ export const toNewPatient = (object: unknown): NewPatient => {
 
 export const toPatient = (object: unknown): Patient => {
   return patientSchema.parse(object)
+}
+
+export const toNewEntry = (object: unknown): NewEntry => {
+  return newEntrySchema.parse(object)
 }
 
 // zod replacement for the below manual parsing and validation

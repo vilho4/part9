@@ -4,6 +4,8 @@ import { Diagnosis, Patient } from '../types'
 
 import patientService from '../services/patients'
 
+import EntryDetails from '../components/EntryDetails'
+
 const PatientPage = ({ diagnoses }: { diagnoses: Diagnosis[] }) => {
   const { id } = useParams<{ id: string }>()
   const [patient, setPatient] = useState<Patient | null>(null)
@@ -18,10 +20,6 @@ const PatientPage = ({ diagnoses }: { diagnoses: Diagnosis[] }) => {
     return <div>no patient found</div>
   }
 
-  const getDiagnosisName = (code: string): string | undefined => {
-    return diagnoses.find((d) => d.code === code)?.name
-  }
-
   return (
     <div>
       <h2>{patient.name}</h2>
@@ -30,29 +28,13 @@ const PatientPage = ({ diagnoses }: { diagnoses: Diagnosis[] }) => {
       <div>occupation: {patient.occupation}</div>
       <h3>Entries</h3>
 
-      <ul style={{ paddingLeft: '1.2em' }}>
-        {patient.entries.map((e) => (
-          <li key={e.id} style={{ marginBottom: '0.75em' }}>
-            <div>
-              <strong>{e.date}</strong>
-            </div>
-
-            <div>{e.description}</div>
-
-            {e.diagnosisCodes && (
-              <ul style={{ paddingLeft: '1.2em', marginTop: '0.25em' }}>
-                {e.diagnosisCodes.map((code) => (
-                  <li key={code}>
-                    <b>{code}</b> {getDiagnosisName(code)}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
-
-      <br />
+      {patient.entries.length === 0 ? (
+        <div>No entries yet.</div>
+      ) : (
+        patient.entries.map((entry) => (
+          <EntryDetails key={entry.id} entry={entry} diagnoses={diagnoses} />
+        ))
+      )}
     </div>
   )
 }

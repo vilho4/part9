@@ -1,0 +1,14 @@
+POST http://localhost:3001/api/patients/fbe754e0-0a71-11f1-9f15-7115f9171c06/entries
+Content-Type: application/json
+
+{
+  "type": "Hospital",
+  "description": "Frank Lucas visits hospital for a regular checkup.",
+  "date": "2024-02-15",
+  "specialist": "Richie Roberts",
+  "diagnosisCodes": ["S03.5"],
+  "discharge": {
+    "date": "2024-02-16",
+    "criteria": "Patient stable"
+  }
+}

@@ -63,5 +63,12 @@ export interface Patient {
   entries: Entry[] // array of entries
 }
 
+export type NewEntry = NewHospitalEntry | NewOccupationalHealthcareEntry | NewHealthCheckEntry
+
+export type NewOccupationalHealthcareEntry = Omit<OccupationalHealthcareEntry, 'id'>
+
+export type NewHealthCheckEntry = Omit<HealthCheckEntry, 'id'>
+
 export type NonSensitivePatient = Omit<Patient, 'ssn' | 'entries'>
 export type NewPatient = Omit<Patient, 'id' | 'entries'>
+export type NewHospitalEntry = Omit<HospitalEntry, 'id'>
