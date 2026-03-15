@@ -11,7 +11,6 @@ interface Props {
 }
 
 const EntryDetails = ({ entry, diagnoses }: Props) => {
-  console.log('EntryDetails', entry)
   switch (entry.type) {
     case 'Hospital':
       return <HospitalEntryDetails entry={entry} diagnoses={diagnoses} />

@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Diagnosis, Patient } from '../types'
+import { Diagnosis, Patient, Entry } from '../types'
 
-import patientService from '../services/patients'
-
+import AddEntryForm from '../components/PatientPage/AddEntryForm'
 import EntryDetails from '../components/EntryDetails'
+import patientService from '../services/patients'
 
 const PatientPage = ({ diagnoses }: { diagnoses: Diagnosis[] }) => {
   const { id } = useParams<{ id: string }>()
@@ -12,12 +12,18 @@ const PatientPage = ({ diagnoses }: { diagnoses: Diagnosis[] }) => {
 
   useEffect(() => {
     if (!id) return
-
     patientService.getById(id).then(setPatient)
   }, [id])
 
   if (!patient) {
-    return <div>no patient found</div>
+    return <div>No patient found</div>
+  }
+
+  const handleEntryAdded = (entry: Entry) => {
+    setPatient({
+      ...patient,
+      entries: patient.entries.concat(entry),
+    })
   }
 
   return (
@@ -26,6 +32,9 @@ const PatientPage = ({ diagnoses }: { diagnoses: Diagnosis[] }) => {
 
       <div>ssn: {patient.ssn}</div>
       <div>occupation: {patient.occupation}</div>
+
+      <AddEntryForm patientId={patient.id} diagnoses={diagnoses} onEntryAdded={handleEntryAdded} />
+
       <h3>Entries</h3>
 
       {patient.entries.length === 0 ? (
